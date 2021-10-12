@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import Todo from '../models/Todo.js'
 import createError from "http-errors";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken'
@@ -42,6 +43,7 @@ export const register = async (req, res, next) => {
     // user.password = undefined
 
     const token = jwt.sign({id: user._id}, process.env.SECRET, {expiresIn: '3d'})
+    console.log(token)
 
     const cookieOptions = {
       httpOnly: true,
@@ -99,11 +101,13 @@ export const authUser = async (req, res) => {
 }
 
 
-// users/:id/posts
+// users/:id/todos
 export const getUserTodos = async (req, res, next) => {
-  const {id} = re.params
+  const {id} = req.params
+  console.log(id)
   try {
-    const userTodos = Todos.find({user: id}).populate({user})
+    const userTodos = await Todo.find({user: id}).populate('user')
+    console.log(userTodos)
     if(!userTodos) throw new createError(404, `No todos of user with id ${id} was found.`)
     res.json(userTodos) 
   } catch (error) {
