@@ -25,7 +25,7 @@ const App = () => {
             <Route path="/signin">
               <SignIn />
             </Route>
-            <Route path="/dashboard">
+            <Route exact path="/dashboard/:token">
               <Dashboard />
             </Route>
             <Route path="/signout">

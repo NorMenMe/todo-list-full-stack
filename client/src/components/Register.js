@@ -26,7 +26,7 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const submitData = async () => {
-      fetch("http://localhost:5000/users", {
+      fetch("http://localhost:5000/users/register", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -39,7 +39,7 @@ const Register = () => {
           setCurrentUser(data.firstName);
         })
         .then(() => {
-          history.push("/dashboard");
+          history.push("/dashboard/:token");
         })
         .catch((error) => {
           console.error("Error:", error);
