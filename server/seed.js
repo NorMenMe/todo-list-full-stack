@@ -31,6 +31,7 @@ const seed = async () => {
 
     try {
       const usersCreated = await Promise.all(userPromises);
+      // console.log(usersCreated)
     } catch (error) {
       console.log(error)
     }
@@ -43,27 +44,34 @@ const seed = async () => {
         email: faker.internet.email(),
         password: '$2a$10$Wp4z130C4AFmgvTgaxhF5eI7LBfPwBNFl7sThEx9lCEVO63ej.kQ2',
         isAdmin: true})
+
+        // console.log(admin)
     } catch (error) {
       console.log(error)
     }
     
-    const userArrIds = User.find().map(item => item._id)
+    try {
+      const allUsers = await User.find()//.map(item => item._id)
+      const ids = allUsers.map(item => item._id)
+      console.log(ids)
 
-   const todoPromises = Array(12).fill(null).map(()=>{
-     const todoData = {
-      title: faker.lorem.words(),
-      description: faker.lorem.sentence(),
-      user: faker.random.arrayElement(userArrIds)
-     }
-     const todo = new Todo(todoData)
-     return todo.save()
-   })
+      const todoPromises = Array(12).fill(null).map(()=>{
+        const todoData = {
+         title: faker.lorem.words(),
+         description: faker.lorem.sentence(),
+         user: faker.random.arrayElement(ids)
+        }
+        const todo = new Todo(todoData)
+        return todo.save()
+      })
+       
+       const todosCreated = await Promise.all(todoPromises);
+       console.log(todosCreated)
+   
+    } catch (error) {
+      console.log(error)
+    }
     
-   try {
-    const todosCreated = await Promise.all(todoPromises);
-  } catch (error) {
-    console.log(error)
-  }
 
     //  SUCCESS REPORT
     console.log(`seeded`);
