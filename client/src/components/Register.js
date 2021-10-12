@@ -39,7 +39,7 @@ const Register = () => {
           setCurrentUser(data.firstName);
         })
         .then(() => {
-          history.push("/dashboard");
+          history.push("/dashboard/:token");
         })
         .catch((error) => {
           console.error("Error:", error);

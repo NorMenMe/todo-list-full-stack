@@ -3,8 +3,6 @@ import TodoItem from "./TodoItem";
 import dotenv from "dotenv";
 dotenv.config();
 
-const URI = process.env.MONGO_URI;
-
 // let the post check works
 // fetch get of all "todos" of the specific user : /todos/:id
 // you need an array of obj
@@ -18,6 +16,8 @@ const TodoList = ({ id }) => {
     description: "",
     user: "",
   };
+
+  console.log(id);
 
   const [todo, setTodo] = useState(todoData); //state to create todos
 
@@ -34,7 +34,7 @@ const TodoList = ({ id }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const submitData = async () => {
-      fetch(URI, {
+      fetch("http://localhost:5000/todos", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
