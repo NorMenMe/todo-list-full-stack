@@ -16,13 +16,13 @@ import {userValidationRules, userValidationErrorHandling } from '../validation/u
 
 const routerUsers = express.Router();
 
-routerUsers.route("/").get( getAllUsers);//auth, isAdmin,
+routerUsers.route("/").get(auth, isAdmin, getAllUsers);//auth, isAdmin,
 routerUsers.route('/login').post(login)
 routerUsers.route('/logout').post(logout)
 routerUsers.route('/auth').post(auth, authUser) 
 routerUsers.route('/register').post(userValidationRules(), userValidationErrorHandling, register)
 routerUsers.route("/:id").get(auth, getUser);
-routerUsers.route('/:id/todos').get(getUserTodos)
+routerUsers.route('/:id/todos').get(auth, getUserTodos)
 
 
 export default routerUsers;
