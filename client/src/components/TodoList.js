@@ -1,15 +1,31 @@
-import { useContext } from "react";
+import { useState } from "react";
 import TodoItem from "./TodoItem";
-import TodoListContext from "../context/createContext";
+import dotenv from "dotenv";
+dotenv.config();
 
-const TodoList = () => {
-  const { todo, setTodo, id } = useContext(TodoListContext);
+const URI = process.env.MONGO_URI;
+
+// let the post check works
+// fetch get of all "todos" of the specific user : /todos/:id
+// you need an array of obj
+// store it in a state
+// map the state
+//
+
+const TodoList = ({ id }) => {
+  const todoData = {
+    title: "",
+    description: "",
+    user: "",
+  };
+
+  const [todo, setTodo] = useState(todoData); //state to create todos
 
   const handleChange = (e) => {
     setTodo({
       ...todo,
       [e.target.name]: e.target.value,
-      user: id._id,
+      user: id,
     });
   };
 
@@ -18,7 +34,7 @@ const TodoList = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const submitData = async () => {
-      fetch("http://localhost:5000/todos", {
+      fetch(URI, {
         method: "POST",
         headers: {
           "Content-type": "application/json",

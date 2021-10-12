@@ -25,7 +25,7 @@ const App = () => {
             <Route path="/signin">
               <SignIn />
             </Route>
-            <Route path="/dashboard">
+            <Route path="/dashboard/:id">
               <Dashboard />
             </Route>
             <Route path="/signout">
