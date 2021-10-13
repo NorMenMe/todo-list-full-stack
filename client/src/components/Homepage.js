@@ -9,7 +9,7 @@ const Homepage = () => {
         <div className="px-2 w-50 d-flex justify-content-center align-items-center">
           <h4>
             New user?{" "}
-            <Link to="/register" className="text-decoration-none">
+            <Link to="/users/register" className="text-decoration-none">
               {" "}
               Create your account here!
             </Link>

@@ -25,6 +25,7 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(userData);
     const submitData = async () => {
       fetch("http://localhost:5000/users/register", {
         method: "POST",
