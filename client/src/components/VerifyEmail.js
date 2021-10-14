@@ -7,6 +7,7 @@ function VerifyEmail() {
   const [message, setMessage] = useState("We are verifying your account....");
   const { token } = useParams();
   console.log(token);
+
   useEffect(() => {
     const verifyAccount = async () => {
       try {
