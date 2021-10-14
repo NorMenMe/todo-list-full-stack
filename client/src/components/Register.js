@@ -25,6 +25,7 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(userData);
     const submitData = async () => {
       fetch("http://localhost:5000/users/register", {
         method: "POST",
@@ -36,10 +37,11 @@ const Register = () => {
         .then((response) => response.json())
         .then((data) => {
           console.log(data.firstName);
+          console.log(data._id);
           setCurrentUser(data.firstName);
         })
         .then(() => {
-          history.push("/dashboard/:token");
+          history.push(`/dashboard/${data._id}`); // changed
         })
         .catch((error) => {
           console.error("Error:", error);

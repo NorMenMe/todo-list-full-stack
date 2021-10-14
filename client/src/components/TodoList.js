@@ -17,7 +17,7 @@ const TodoList = ({ id }) => {
     user: "",
   };
 
-  console.log(id);
+  // console.log(id);
 
   const [todo, setTodo] = useState(todoData); //state to create todos
 
@@ -29,7 +29,7 @@ const TodoList = ({ id }) => {
     });
   };
 
-  console.log(todo);
+  // console.log(todo);
 
   const handleSubmit = (e) => {
     e.preventDefault();
